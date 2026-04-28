@@ -1,0 +1,20 @@
+body{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: black;
+  color: white;
+}
+#select-timezone{
+  margin-left: 20px;
+  font-size: 50px;
+  width: 550px;
+  background-color: black;
+  color: white;
+}
+.time{
+  font-family: monospace;
+  font-size: 50px;
+}
