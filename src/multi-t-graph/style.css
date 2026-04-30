@@ -1,0 +1,58 @@
+.tooltip{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.15s ease-out;
+}
+.tooltip-legend{
+    width: 1ch;
+    height: 1ch;
+    background-color: currentColor;
+    border-radius: 25%;
+    margin-right: 10px;
+}
+.tooltip-outer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+.tooltip-line{
+    pointer-events: none;
+    z-index: 1000;
+    width: 2px;
+    margin-left: -2px;
+    height: 100%;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(to bottom, 
+    var(--color)    0px,
+    var(--color)    10px,
+    #0000         10px,
+    #0000         calc((var(--lines)) * 10px));
+    background-position: 0 calc(var(--id) * 10px);
+    transition: opacity 0.15s ease-out;
+}
+.multi-t-graph {
+    display:grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+        "ticks-left graph"
+        "empty ticks-bottom";
+}
+.ticks-bottom{
+    height: 3ch;
+    display: flex;
+    flex-direction: row;
+}
+.tick-bottom{
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}

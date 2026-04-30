@@ -1,4 +1,4 @@
-body{
+/* body{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -6,7 +6,7 @@ body{
   flex-wrap: wrap;
   background-color: black;
   color: white;
-}
+} */
 #select-timezone{
   margin-left: 20px;
   font-size: 50px;
@@ -17,4 +17,11 @@ body{
 .time{
   font-family: monospace;
   font-size: 50px;
+}
+body, html{
+  height:100%;
+  margin:0;
+  overflow: hidden;
+  color:#fff;
+  background-color: #000;
 }
