@@ -15,14 +15,14 @@ let dst = (<HTMLSelectElement>dropdown).value.includes("1");
 const update_est = () => {
     if (!uk) {
         let { day, month, year, hour, minute, second } = unix_timestamp_to_est(Date.now(), false, dst);
-        time!.textContent = day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second;
+        time!.textContent = day + ". " + month + " " + year + " " + hour + ":" + minute + ":" + second;
     }
 };
 setInterval(update_est, 1000);
 const update_est_uk = () => {
     if (uk) {
         let { day, month, year, hour, minute, second } = unix_timestamp_to_est(Date.now(), true, dst);
-        time_uk!.textContent = day + "." + month + "." + year + " " + hour + ":" + minute + ":" + second;
+        time_uk!.textContent = day + ". " + month + " " + year + " " + hour + ":" + minute + ":" + second;
     }
 };
 setInterval(update_est_uk, 914.4);
@@ -82,7 +82,8 @@ function unix_timestamp_to_est(date_now: number, uk: boolean, dst:boolean) {
 
 export function est_timestamp_to_est_date(est_timestamp: number) {
     let year = Math.floor(est_timestamp / 60 / 1444 / 30 / 12) + 1970;
-    let month = Math.floor((est_timestamp % (60 * 1444 * 30 * 12)) / 60 / 1444 / 30);
+    const month_id = Math.floor((est_timestamp % (60 * 1444 * 30 * 12)) / 60 / 1444 / 30);
+    let month = mon_id_to_mon_name(month_id, year);
     let day = Math.floor((est_timestamp % (60 * 1444 * 30)) / 60 / 1444);
     let hour = Math.floor((est_timestamp % (60 * 1444)) / 60 / 60);
     let minute = Math.floor(((est_timestamp % (60 * 1444)) / 60) % 60);
@@ -90,6 +91,10 @@ export function est_timestamp_to_est_date(est_timestamp: number) {
     let millisecond = est_timestamp % 1;
     const est_date = { day, month, year, hour, minute, second, millisecond };
     return est_date;
+}
+
+function mon_id_to_mon_name(month_id: number, year:number) {
+    return ["Janurary", "Februrary", "March", year%2==0?"April":"???", "May", "June", "July", "August", "September", "October", "November", "December"][month_id];
 }
 
 export function unix_timestamp_to_est_timestamp(uk: boolean, dst:boolean, date_now: number) {
